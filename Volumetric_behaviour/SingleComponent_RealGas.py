@@ -1,4 +1,8 @@
-# Code for the automatic estimation of properties of single component, real gas
+# Code for the automatic estimation of volumetric properties (T,P,v)
+# Single component, real gas
+# Given two state properties (T,P or T,v or P,v) the code applies
+# different models, selected by the user, for the estimation of the
+# third property
 # Author: Marcello Ferraro
 # Last update: 07/11/2023
 
