@@ -1,4 +1,4 @@
-# Code for the automatic estimation of properties of single component, real gas mixture
+# Code for the automatic estimation of properties of single component, real gas
 # Author: Marcello Ferraro
 # Last update: 07/11/2023
 
@@ -14,7 +14,7 @@ from scipy.optimize import fsolve
 # PR = Peng-Robinson
 # V = Virial (Onnes)
 
-model = "RKS"
+model = "RRR"
 
 ### Define data
 
@@ -302,12 +302,22 @@ if model == "Virial":
     solution = fsolve(equation_solver, [fg], args = parameters, xtol=1e-10)
 
 
-if check == "P": 
-    print("Estimated pressure with the "+model+" model: "\
-        +str(round(solution[0]/1e5,8))+" [bar]")
+if check == "P":
+    try:
+        print("Estimated pressure with the "+model+" model: "\
+            +str(round(solution[0]/1e5,8))+" [bar]")
+    except:
+        print("ERROR: check model definition!")
 elif check == "T": 
-    print("Estimated temperature with the "+model+" model: "\
-        +str(round(solution[0],8))+" [K]")
+    try:
+        print("Estimated temperature with the "+model+" model: "\
+            +str(round(solution[0],8))+" [K]")
+    except:
+        print("ERROR: check model definition!")
+    
 elif check == "v": 
-    print("Estimated molar volume with the "+model+" model: "\
-        +str(round(solution[0],8))+" [m3/mol]")
+    try:
+        print("Estimated molar volume with the "+model+" model: "\
+            +str(round(solution[0],8))+" [m3/mol]")
+    except:
+        print("ERROR: check model definition!")
