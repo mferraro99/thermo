@@ -14,7 +14,7 @@ from scipy.optimize import fsolve
 # PR = Peng-Robinson
 # V = Virial (Onnes)
 
-model = "RRR"
+model = "RKS"
 
 ### Define data
 
