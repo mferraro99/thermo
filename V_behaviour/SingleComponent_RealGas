@@ -6,32 +6,31 @@ import sys
 import math
 from scipy.optimize import fsolve
 
+# Define constants
+R = 8.31446261815324 # [J/mol/K]
+pi = 3.14159265358979 # [-]
+
 # Define the model used for the calculation:
 # IG = Ideal Gas
 # vdW = van der Waals
 # RK = Redlich-Kwong
 # RKS = Redlich-Kwong-Soave
 # PR = Peng-Robinson
-# V = Virial (Onnes)
+# Virial = Virial EoS (Onnes)
 
 model = "RKS"
 
 ### Define data
 
-# Compound properties
-Pc = 24.97*1e5 # Critical pressure [Pa]
-Tc = 569.40 # Critical temperature [K]
-omega = 0.398 # Pitzer acentric factor [-]
-
 # System properties --> "unknown" is the quantity we want to calculate
-
 P = 2.15*1e5 # System pressure [Pa]
 T = 427.9 # System temperature [K]
 v = "unknown" # System molar volume [m3/mol]
 
-# Define constants
-R = 8.31446261815324 # [J/mol/K]
-pi = 3.14159265358979 # [-]
+# Compound properties
+Pc = 24.97*1e5 # Critical pressure [Pa]
+Tc = 569.40 # Critical temperature [K]
+omega = 0.398 # Pitzer acentric factor [-]
 
 ### Define a first guess value for our quantity (Ideal gas law)
 
@@ -243,8 +242,8 @@ if model == "PR":
         A = a*P/(R*T)**2
         B = b*P/R/T
 
-        u = 1
-        w = 0
+        u = 2
+        w = -1
         alfa,beta,gamma = alfa_beta_gamma(A,B,u,w)
         Z = max(Zroot_calculation(alfa,beta,gamma))
 
